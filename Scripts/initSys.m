@@ -18,6 +18,10 @@ tau_max = 0.9;
 
 Mimo = eye(6) * (1/(J*s + B));
 
+T1 = transl(0,0.2,0) * T0;
+T2 = transl(0,0,-0.3) * T1;
+T3 = transl(0,-0.2,0) * T2;
+
 %% Simulazione
 
 out = sim('System');
