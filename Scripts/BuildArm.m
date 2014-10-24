@@ -1,5 +1,4 @@
 % Creazione braccio
-
 d1 = 0.725;
 d2 = 0.175;
 d3 = 0.45;
@@ -16,9 +15,8 @@ L(6) = Link([0 d6 0 0]);
 
 busher = SerialLink(L,'name','Busher');
 busher.base = transl(0,0,d1);
-%trotz(-pi/2)
-busher.plot([0 0 0 0 0 0])
-busher.fkine([0 0 0 0 0 0])
-%busher.fkine([-pi/2 -pi/2 -pi/2 -pi/2 -pi/2 -pi/2])
 
-q0 = zeros(1,6);
+q0 = ones(1,6); % Zero position
+qn = [0 -pi/4 0 0 pi/4 0]; % Nominal postion
+
+T0 = robot.fkine(qn); % Posa iniziale relativa a qn
