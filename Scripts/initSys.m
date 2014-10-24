@@ -2,8 +2,8 @@ clear, clc, close all;
 
 %% Script di inizializzazione
 s = tf('s');
-
-BuildArm;
+buildArm;
+robot = busher; % serve a far funzionare il modello Sim
 
 %% Parametri
 Kp = 2;

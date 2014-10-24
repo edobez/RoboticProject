@@ -19,4 +19,6 @@ busher.base = transl(0,0,d1);
 q0 = ones(1,6); % Zero position
 qn = [0 -pi/4 0 0 pi/4 0]; % Nominal postion
 
-T0 = robot.fkine(qn); % Posa iniziale relativa a qn
+T0 = busher.fkine(qn); % Posa iniziale relativa a qn
+
+clear d* L
