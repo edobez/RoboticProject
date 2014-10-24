@@ -1,4 +1,4 @@
-close all
+% close all
 
 %% Acquisizione dati da output modello
 pose.sp = transl(out.get('Tsp'));
@@ -6,12 +6,15 @@ pose.plan = transl(out.get('Tplan'));
 
 q.sp = out.get('q');
 q.dot = out.get('qdot');
+q.dot = q.dot(1:length(q.sp),:);
+q.man = robot.maniplty(q.sp);
 
 t = out.get('tout');
+t = t(1:length(q.sp));
 
 %% Grafico proiezioni traiettorie
 scrsz = get(groot,'ScreenSize');
-figure('OuterPosition',[1 50 scrsz(3)/4 (scrsz(4) - 50)])
+f1 = figure('OuterPosition',[1 50 scrsz(3)/4 (scrsz(4) - 50)]);
 
 % XY
 subplot(3,1,1)
@@ -34,7 +37,7 @@ ylabel('Z-axis')
 plot(pose.plan(:,1),pose.plan(:,3))
 plot(pose.sp(:,1),pose.sp(:,3))
 legend('Planned','Set-point');
-axis([-1 1 -1 1]);
+axis([-1 1 -0.5 2]);
 hold off
 
 % YZ
@@ -46,21 +49,27 @@ ylabel('Z-axis')
 plot(pose.plan(:,2),pose.plan(:,3))
 plot(pose.sp(:,2),pose.sp(:,3))
 legend('Planned','Set-point');
-axis([-1 1 -1 1]);
+axis([-1 1 -0.5 2]);
 hold off
 
 %% Grafico joint
-figure(2)
-subplot(2,1,1)
-plot(t(2:end-1)*ones(1,6),q.sp(:,:))
+f2 = figure('OuterPosition',[scrsz(3)/4  50 scrsz(3)/4 (scrsz(4) - 50)]);
+
+subplot(3,1,1)
+plot(t*ones(1,6),q.sp(:,:))
 title('Joint positions (set-point)')
 xlabel('Time')
 ylabel('Rad')
-yaxis([-pi pi])
+yaxis([-pi/2 pi/2])
 legend('q1','q2','q3','q4','q5','q6')
 
-subplot(2,1,2)
+subplot(3,1,2)
 plot(t*ones(1,6),q.dot(:,:))
 title('Joint velocities (set-point)')
 xlabel('Time')
 ylabel('Rad/s')
+
+subplot(3,1,3)
+plot(t,q.man)
+title('Manipulability (set-point)')
+xlabel('Time')
