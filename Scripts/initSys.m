@@ -18,9 +18,9 @@ tau_max = 0.9;
 
 Mimo = eye(6) * (1/(J*s + B));
 
-T1 = transl(-0.6,0.5,0.8) * troty(-pi/2);
-T2 = transl(-0.6,-0.5,0.8)* troty(-pi/2);
-T3 = transl(-0.6,0,0.3)* troty(-pi/4);
+T1 = transl(-0.4,0.5,0.8) * troty(-pi/2);
+T2 = transl(-0.4,-0.5,0.8)* troty(-pi/2);
+T3 = transl(-0.4,0,0.3)* troty(-pi/4);
 
 %% Simulazione
 figure(1)
