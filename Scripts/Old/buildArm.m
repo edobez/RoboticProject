@@ -5,7 +5,11 @@ d3 = 0.45;
 d4 = 0.2;
 d5 = 0.425;
 d6 = 0.25;
-% prova git
+
+ro = 2700; % Density
+k = 5; % Scaling factor
+ro = ro/k;
+
 L(1) = Link([0 0 0 -pi/2]);
 L(2) = Link([0 d2 d3 0]);
 L(3) = Link([0 d4 0 -pi/2]);
