@@ -42,6 +42,7 @@ dim.L3 = 400e-3;
 dim.L4 = 100e-3;
 dim.L5 = 100e-3;
 dim.L6 = 100e-3;
+G = 9.81;
 
 %% Parametri
 
