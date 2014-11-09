@@ -17,6 +17,9 @@ L(4) = Link([0 d5 0 -pi/2]);
 L(5) = Link([0 0 0 pi/2]);
 L(6) = Link([0 d6 0 0]);
 
+% TODO provare ad inserire parametri dinamici nei link per usare funzione
+% gravload
+
 robot = SerialLink(L,'name','Busher');
 robot.base = transl(0,0,d1);
 
