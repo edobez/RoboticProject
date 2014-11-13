@@ -33,9 +33,6 @@ L(4) = Link([0 d5 0 -pi/2]);
 L(5) = Link([0 0 0 pi/2]);
 L(6) = Link([0 d6 0 0]);
 
-% TODO provare ad inserire parametri dinamici nei link per usare funzione
-% gravload
-
 robot = SerialLink(L,'name','Busher');
 robot.base = transl(0,0,d1);
 
@@ -47,10 +44,16 @@ clear L                  % Clear unnedded variables
 
 %% Parametri
 
-% Kp = 2;
-% Ki = 1;
-% J = 0.01;
-% B = 0.1;
-% Km = 0.228;
-% Kv = 0.8;
-% tau_max = 0.9;
+% TODO (Flavio): mettere i valori sottostanti in struct, altrimenti non ho
+% idea di cosa sono
+T = 0.05; % T cosa?!?!?!?!?
+Tpid = 0.05;
+Kp = 2;
+Ki = 1;
+J = 0.01;
+B = 0.1;
+Km = 0.25;
+Kv = 0.8;
+tau_max = 0.9;
+
+Mimo = eye(6) * (1/(J*s + B));

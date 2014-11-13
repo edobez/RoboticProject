@@ -1,7 +1,11 @@
 function [ tauFf ] = calcTauGravFnc( q,dim )
 %CALCTAUGRAVFNC Calculates the torques due to gravity in a given arm
 %configuration
-%Detailed explanation goes here
+% q = arm configuration
+% dim = struct with dimensions of arm
+% tauFf = torque (approximated) at each join in order to balance gravity
+
+G=9.81;
 
 M2 = pi*dim.radius^2 * dim.L2 * dim.ro;
 M3 = pi*dim.radius^2 * (dim.Lc + 5e-2) * dim.ro;
@@ -10,7 +14,6 @@ M5 = pi*dim.radius^2 * (dim.L5) * dim.ro;
 M6 = pi*dim.radius^2 * (dim.L6) * dim.ro;
 
 q3_offset = pi/2;
-G=9.81;
 
 Fp2 = M2 * G;
 Fpc3 = M3 * G;
@@ -23,7 +26,6 @@ dist_2_3 = dim.L2-15e-2;
 dist_2_cm2 = (dim.L2/2)-7.5e-2;
 dist_3_cm3 = (dim.L3+dim.L4)/2-7.5e-2;
 dist_3_56 = dim.L3+dim.L4-7.5e-2;
-
 
 %TXY, Coppia applicata al motore X dal corpo Y;
 T2_2 = dist_2_cm2*cos(q(2))*Fp2;
