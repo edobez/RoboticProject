@@ -1,4 +1,3 @@
-clear, clc
 s = tf('s');
 startup_rvc;
 

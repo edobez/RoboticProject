@@ -34,10 +34,12 @@ void setup() {
 	nunchuk_init();
 	
 	/* Task start */
+	m1 = 1;
+	m2 = 0;
+	
 	alive->Start();
 	chuk->Start();
-	com->Start();
-	
+	com->Start();	
 }
 
 void loop() {
@@ -48,6 +50,9 @@ void loop() {
 
 void chuk_task()
 {
+	static int step = 0;
+
+	step++;
 	nunchuk_get_data();
 	
 	njx = integrate(njx,nunchuk_cjoy_x()-NJXOFFSET);
@@ -116,6 +121,7 @@ void com_task()
 	
 	// Serial << posx << " " << posy << endl;
 	//Serial << _BYTE(posx) << _BYTE(posy);
+	
 }
 
 void alive_task()

@@ -1,8 +1,9 @@
 %% Parameters
 q0 = [0 -pi/8 0 0 pi/4 0];% Posa Alta
-qn=q0;
+
 q_start = [0 pi/2 -pi*5/6 0 pi/6 0];     % Starting point
-    
+qn = q_start;    
+
 q1 = [0 0 0 0 pi/4 0];% q per prendere la pallina
 
 qAI = [-pi*3/4 -pi/4 -pi/6 0 pi/4 0]
