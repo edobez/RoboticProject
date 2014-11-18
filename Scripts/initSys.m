@@ -36,17 +36,15 @@ L(6) = Link([0 d6 0 0]);
 robot = SerialLink(L,'name','Busher');
 robot.base = transl(0,0,d1);
 
-q0 = zeros(1,6);            % Zero position
-qn = [0 -pi/4 0 0 pi/4 0];  % Nominal postion
-T0 = robot.fkine(qn);       % Nominal pose
+% q0 = zeros(1,6);            % Zero position
+% qn = [0 -pi/4 0 0 pi/4 0];  % Nominal postion
+% T0 = robot.fkine(qn);       % Nominal pose
 
 clear L                  % Clear unnedded variables
 
 %% Parametri
 
-% TODO (Flavio): mettere i valori sottostanti in struct, altrimenti non ho
-% idea di cosa sono
-T = 0.05; % T cosa?!?!?!?!?
+Tjoint = 0.05;
 Tpid = 0.05;
 Kp = 2;
 Ki = 1;

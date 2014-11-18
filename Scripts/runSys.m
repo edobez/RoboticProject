@@ -1,27 +1,22 @@
 %% Parameters
+q0 = [0 -pi/8 0 0 pi/4 0];% Posa Alta
+qn=q0;
+q_start = [0 pi/2 -pi*5/6 0 pi/6 0];     % Starting point
+    
+q1 = [0 0 0 0 pi/4 0];% q per prendere la pallina
 
-% Via points
-T1 = transl(-0.4,0.5,0.8) * troty(-pi/2);
-T2 = transl(-0.4,-0.5,0.8)* troty(-pi/2);
-T3 = transl(-0.4,0,0.3)* troty(-pi/4);
-T4 = transl(0,-0.8,0) * T0;
+qAI = [-pi*3/4 -pi/4 -pi/6 0 pi/4 0]
+qAF = [-pi -pi/4 0 0 pi/4 0]
 
-P0 = [0.7071    -0.7071    0        0.25,
-      0.7071    0.7071     0       -0.25,
-      0         0          1.0000   0.05,
-      0         0          0        1];
-  
-P2 = [0.5000   -0.7071    0.5000    0.6,
-      0.5000    0.7071    0.5000    0.6,
-     -0.7071         0    0.7071    0.5,
-      0              0    0         1];  
-  
-P3 = [0.5000   -0.7071    0.5000    0.8,
-      0.5000    0.7071    0.5000    0.8,
-     -0.7071         0    0.7071    0.3,
-      0              0    0         1];
+%% Via points
+T0 = robot.fkine(q0);                             
+T1 = trotz(-pi/4) * robot.fkine(q1);
+T2 = trotz(-pi/2) * T0;
+T3 = robot.fkine(qAI);
+T4 = robot.fkine(qAF);
+T5 = trotz(-pi/4) * robot.fkine(q_start);
+TF = robot.fkine(q_start);
 
 %% Simulazione
-figure(1)
-out = sim('System');
-graphResults;
+
+% out = sim('SystemT');
