@@ -25,12 +25,11 @@ d5 = 0.425;
 d6 = 0.25;
 
 L(1) = Link([0 0 0 -pi/2]);
-L(1).m = 4;
 L(2) = Link([0 d2 d3 0]);
 L(3) = Link([0 d4 0 -pi/2]);
 L(4) = Link([0 d5 0 -pi/2]);
 L(5) = Link([0 0 0 pi/2]);
-L(6) = Link([0 d6 0 0]);
+L(6) = Link([0 0 0 0]);
 
 robot = SerialLink(L,'name','Busher');
 robot.base = transl(0,0,d1);
@@ -44,7 +43,7 @@ clear L                  % Clear unnedded variables
 %% Parametri
 
 Tjoint = 0.05;
-Tpid = 0.05;
+Tpid = 0.02;
 Kp = 2;
 Ki = 1;
 J = 0.01;
@@ -53,4 +52,4 @@ Km = 0.25;
 Kv = 0.8;
 tau_max = 0.9;
 
-Mimo = eye(6) * (1/(J*s + B));
+% Mimo = eye(6) * (1/(J*s + B));

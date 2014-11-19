@@ -10,16 +10,20 @@
 
 #define COM_HEADER 0x07
 #define COM_FOOTER	0x0D
-#define COM_DATANUM	7
+#define COM_DATANUM	8
 #define COM_BUFSIZE	2+2*COM_DATANUM
 
 int pin_led1 = 12;
+int pin_led2 = 10;
+int pin_but1 = 5;
+
 TimerObject *alive = new TimerObject(500,&alive_task);
 TimerObject *chuk = new TimerObject(10,&chuk_task);
 TimerObject *com = new TimerObject(100,&com_task);
 
 int16_t posx,posy,posz;
 int16_t njx, njy, nbc, nbz, nax, nay, naz;
+int16_t but1;
 
 void setup() {
 	/* Serial init */
@@ -29,14 +33,13 @@ void setup() {
 	
 	/* Peripheral initialization */
 	pinMode(pin_led1, OUTPUT);
+	pinMode(pin_led2, OUTPUT);
 	digitalWrite(pin_led1,HIGH);
+	pinMode(pin_but1, INPUT_PULLUP);
 	
 	nunchuk_init();
 	
 	/* Task start */
-	m1 = 1;
-	m2 = 0;
-	
 	alive->Start();
 	chuk->Start();
 	com->Start();	
@@ -64,6 +67,10 @@ void chuk_task()
 	nax = integrate(nax,nunchuk_caccely());
 	nay = integrate(nay,nunchuk_caccelx());
 	naz = integrate(naz,nunchuk_caccelz());
+	
+	but1 = digitalRead(pin_but1);
+	if (!but1) digitalWrite(pin_led2,HIGH);
+	else digitalWrite(pin_led2,LOW);
 	
 }
 
@@ -100,6 +107,9 @@ void com_task()
 	
 	buf[i++] = lowByte(naz);
 	buf[i++] = highByte(naz);
+	
+	buf[i++] = lowByte(but1);
+	buf[i++] = highByte(but1);
 
 	buf[i++] = COM_FOOTER;
 	
