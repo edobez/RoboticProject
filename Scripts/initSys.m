@@ -43,7 +43,7 @@ clear L                  % Clear unnedded variables
 %% Parametri
 
 Tjoint = 0.05;
-Tpid = 0.05;
+Tpid = 0.02;
 Kp = 2;
 Ki = 1;
 J = 0.01;
@@ -52,4 +52,4 @@ Km = 0.25;
 Kv = 0.8;
 tau_max = 0.9;
 
-Mimo = eye(6) * (1/(J*s + B));
+% Mimo = eye(6) * (1/(J*s + B));
